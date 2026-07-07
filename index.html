@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CDIM: Cross-Domain Isomorphic Mapping</title>
+    <meta
+      name="description"
+      content="Project page for CDIM, a black-box LLM safety evaluation framework based on cross-domain isomorphic mapping."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="rail" aria-label="Quick navigation">
+      <div class="rail-title">Quick Navigation</div>
+      <a href="#overview">Overview</a>
+      <a href="#motivation">Motivation</a>
+      <a href="#method">Methodology</a>
+      <a href="#results">Experimental Results</a>
+      <a href="#ablation">Ablation Analysis</a>
+      <a href="#ethics">Ethics</a>
+      <a href="#citation">Citation</a>
+    </aside>
+
+    <main>
+      <section class="hero" id="overview">
+        <div class="warning">
+          This project page discusses jailbreak attacks for academic AI safety research. It omits operational harmful examples and focuses on high-level methodology, evaluation, and responsible disclosure.
+        </div>
+
+        <p class="venue">ACM MM 2026 Submission</p>
+        <h1>CDIM: Cross-Domain Isomorphic Mapping for Efficient Black-Box Jailbreak Attacks</h1>
+        <p class="authors">Anonymous Author(s) &middot; Submission ID: 390</p>
+
+        <div class="actions" aria-label="Project links">
+          <a class="button primary" href="assets/cdim-paper.pdf">Paper</a>
+          <a class="button" href="#method">Method</a>
+          <a class="button" href="#results">Results</a>
+          <a class="button" href="#citation">Cite</a>
+        </div>
+
+        <div class="hero-grid">
+          <div class="abstract">
+            <h2>Abstract</h2>
+            <p>
+              CDIM introduces a black-box jailbreak framework that conceals sensitive requests inside structurally analogous but semantically benign carriers. The pipeline builds a bijective mapping between sensitive and safe semantic spaces, asks the target model to complete an isomorphic task in the safe domain, then recovers the original semantics from the mapped output.
+            </p>
+            <p>
+              Across mini-HarmBench and AdvBench, CDIM improves attack efficiency and robustness against frontier models. The paper reports an average attack success rate of 65.2% against Claude Sonnet 4.5 with only three queries, showing that current guardrails can miss deep structural intent when surface semantics appear benign.
+            </p>
+          </div>
+
+          <div class="metric-panel">
+            <div>
+              <strong>3</strong>
+              <span>average queries</span>
+            </div>
+            <div>
+              <strong>65.2%</strong>
+              <span>avg. ASR on Claude Sonnet 4.5</span>
+            </div>
+            <div>
+              <strong>91.5%</strong>
+              <span>full-pipeline Code ASR in ablation</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" id="motivation">
+        <div class="section-head">
+          <p class="eyebrow">Motivation</p>
+          <h2>Stealth and efficiency without iterative prompt search</h2>
+        </div>
+        <p>
+          Existing black-box jailbreak methods often trade off success rate against query cost. Prompt-search methods require many target interactions, surface obfuscation exposes the same intent through shallow masking, and decomposition can lose semantic fidelity when the request is atomic. CDIM reframes the problem as cross-domain logical preservation: keep the procedure intact while moving the surface vocabulary into an out-of-distribution benign domain.
+        </p>
+        <figure class="figure">
+          <img src="assets/figure-efficiency.png" alt="Efficiency versus effectiveness plot for jailbreak paradigms." />
+          <figcaption>
+            Efficiency versus effectiveness on HarmBench. CDIM occupies the low-query, high-ASR region reported in the paper.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="band" id="method">
+        <div class="section-head">
+          <p class="eyebrow">Methodology</p>
+          <h2>The CDIM pipeline</h2>
+        </div>
+        <div class="steps">
+          <article>
+            <span>01</span>
+            <h3>Mapping Construction</h3>
+            <p>
+              Select a safe semantic domain, extract key entities and constraints, then build a one-to-one dictionary that preserves semantic roles and procedural relations.
+            </p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Isomorphic Simulation</h3>
+            <p>
+              Query the target model only in the safe domain so the generation follows the original task structure while avoiding explicit sensitive vocabulary.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Backward Recovery</h3>
+            <p>
+              Use the inverse dictionary to restore the mapped output back into the original semantic space, preserving the structure produced by the target model.
+            </p>
+          </article>
+        </div>
+        <figure class="figure wide">
+          <img src="assets/figure-framework.png" alt="Overview of the CDIM framework with mapping, simulation, and recovery phases." />
+          <figcaption>
+            CDIM transforms between sensitive and safe semantic spaces through mapping construction, isomorphic simulation, and backward recovery.
+          </figcaption>
+        </figure>
+        <figure class="figure wide">
+          <img src="assets/figure-comparison.png" alt="Comparison between CDIM and decomposition, semantic wrapper, and iterative search jailbreak paradigms." />
+          <figcaption>
+            Compared with decomposition, semantic wrappers, and iterative search, CDIM targets structural intent through deterministic semantic remapping.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="band" id="results">
+        <div class="section-head">
+          <p class="eyebrow">Experimental Results</p>
+          <h2>Attack success rate across models</h2>
+        </div>
+        <div class="results-grid">
+          <article class="stat">
+            <strong>82.9%</strong>
+            <span>CDIM Code on DeepSeek V3.1, mini-HarmBench</span>
+          </article>
+          <article class="stat">
+            <strong>95.4%</strong>
+            <span>CDIM Math on MiniMax 2.1, AdvBench</span>
+          </article>
+          <article class="stat">
+            <strong>76.2%</strong>
+            <span>CDIM Math on Claude Sonnet 4.5, AdvBench</span>
+          </article>
+          <article class="stat">
+            <strong>&lt; 5</strong>
+            <span>queries in the ideal region shown by the paper</span>
+          </article>
+        </div>
+
+        <div class="table-wrap" role="region" aria-label="Mini-HarmBench ASR table" tabindex="0">
+          <table>
+            <caption>mini-HarmBench ASR (%)</caption>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>DeepSeek V3.1</th>
+                <th>Kimi-K2</th>
+                <th>Qwen 3</th>
+                <th>Gemma 3</th>
+                <th>GPT-oss120B</th>
+                <th>MiniMax 2.1</th>
+                <th>Claude 4</th>
+                <th>Claude 4.5</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>PAP</td><td>73.57</td><td>52.14</td><td>31.43</td><td>45.00</td><td>6.43</td><td>17.86</td><td>0.00</td><td>0.00</td></tr>
+              <tr><td>TAP</td><td>65.00</td><td>54.29</td><td>42.14</td><td>36.43</td><td>9.29</td><td>5.71</td><td>0.00</td><td>0.00</td></tr>
+              <tr><td>PAIR</td><td>56.43</td><td>50.71</td><td>42.14</td><td>29.29</td><td>10.71</td><td>6.43</td><td>0.00</td><td>0.00</td></tr>
+              <tr><td>CC-BOS</td><td>75.71</td><td>90.00</td><td>72.86</td><td>69.29</td><td>7.14</td><td>17.86</td><td>4.29</td><td>2.14</td></tr>
+              <tr class="highlight"><td>CDIM Code</td><td>82.86</td><td>80.00</td><td>79.29</td><td>85.00</td><td>82.86</td><td>84.29</td><td>28.57</td><td>28.57</td></tr>
+              <tr class="highlight"><td>CDIM Magic</td><td>74.29</td><td>76.43</td><td>78.57</td><td>75.71</td><td>77.86</td><td>77.14</td><td>20.71</td><td>17.14</td></tr>
+              <tr class="highlight"><td>CDIM Math</td><td>76.43</td><td>75.00</td><td>79.29</td><td>76.43</td><td>75.71</td><td>75.00</td><td>55.71</td><td>54.29</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrap" role="region" aria-label="AdvBench ASR table" tabindex="0">
+          <table>
+            <caption>AdvBench ASR (%)</caption>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>DeepSeek V3.1</th>
+                <th>Kimi-K2</th>
+                <th>Qwen 3</th>
+                <th>Gemma 3</th>
+                <th>GPT-oss120B</th>
+                <th>MiniMax 2.1</th>
+                <th>Claude 4</th>
+                <th>Claude 4.5</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>FITD</td><td>84.81</td><td>88.46</td><td>67.79</td><td>78.65</td><td>14.04</td><td>5.38</td><td>21.73</td><td>29.23</td></tr>
+              <tr><td>Actor-Attack</td><td>59.62</td><td>78.85</td><td>66.73</td><td>24.81</td><td>66.15</td><td>47.50</td><td>9.04</td><td>9.81</td></tr>
+              <tr><td>X-Teaming</td><td>53.00</td><td>53.73</td><td>55.17</td><td>46.51</td><td>27.88</td><td>21.15</td><td>5.41</td><td>5.77</td></tr>
+              <tr><td>CC-BOS</td><td>53.12</td><td>60.34</td><td>53.12</td><td>52.76</td><td>0.72</td><td>6.85</td><td>0.12</td><td>0.00</td></tr>
+              <tr class="highlight"><td>CDIM Code</td><td>91.92</td><td>91.15</td><td>88.46</td><td>91.92</td><td>91.54</td><td>93.08</td><td>38.65</td><td>38.08</td></tr>
+              <tr class="highlight"><td>CDIM Magic</td><td>88.65</td><td>82.88</td><td>85.96</td><td>88.46</td><td>86.54</td><td>88.85</td><td>15.96</td><td>14.04</td></tr>
+              <tr class="highlight"><td>CDIM Math</td><td>77.88</td><td>91.73</td><td>91.15</td><td>92.12</td><td>87.69</td><td>95.38</td><td>76.73</td><td>76.15</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="band" id="ablation">
+        <div class="section-head">
+          <p class="eyebrow">Ablation Analysis</p>
+          <h2>Mapping and recovery are complementary</h2>
+        </div>
+        <div class="ablation">
+          <div class="table-wrap compact" role="region" aria-label="Ablation table" tabindex="0">
+            <table>
+              <caption>Component Ablation ASR (%)</caption>
+              <thead>
+                <tr>
+                  <th>Mapping</th>
+                  <th>Recovery</th>
+                  <th>Code</th>
+                  <th>Magic</th>
+                  <th>Math</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>No</td><td>No</td><td>0.7</td><td>0.7</td><td>0.7</td></tr>
+                <tr><td>Yes</td><td>No</td><td>2.9</td><td>35.7</td><td>12.1</td></tr>
+                <tr><td>No</td><td>Yes</td><td>59.3</td><td>65.7</td><td>65.0</td></tr>
+                <tr class="highlight"><td>Yes</td><td>Yes</td><td>91.5</td><td>86.5</td><td>87.7</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Mapping alone keeps the model inside a metaphorical space, while recovery alone lacks reliable structural anchors. The full pipeline combines a stable safe-domain path with inverse decoding, yielding the strongest ASR across Code, Magic, and Math mappings.
+          </p>
+        </div>
+        <figure class="figure wide">
+          <img src="assets/figure-models.png" alt="Comparison of LLMs used for mapping construction and backward recovery." />
+          <figcaption>
+            Qwen3-Max is selected as the default mapping and recovery model because it achieves strong success with low API overhead.
+          </figcaption>
+        </figure>
+        <figure class="figure wide">
+          <img src="assets/figure-categories.png" alt="CDIM domain-specific success rates across mini-HarmBench categories." />
+          <figcaption>
+            CDIM variants specialize differently across categories: Code is stronger for technical categories, Math for structured procedural tasks, and Magic for social-context categories.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="band" id="ethics">
+        <div class="section-head">
+          <p class="eyebrow">Responsible Research</p>
+          <h2>Safety scope and disclosure</h2>
+        </div>
+        <p>
+          The paper states that harmful outputs are not disseminated, code release is intended for academic research, and identified vulnerabilities were responsibly disclosed to model developers prior to publication. This site follows the same presentation boundary by summarizing mechanisms and results without publishing operational attack examples.
+        </p>
+      </section>
+
+      <section class="band citation" id="citation">
+        <div class="section-head">
+          <p class="eyebrow">Citation</p>
+          <h2>BibTeX</h2>
+        </div>
+        <pre><code>@inproceedings{anonymous2026cdim,
+  title = {CDIM: Cross-Domain Isomorphic Mapping for Efficient Black-Box Jailbreak Attacks},
+  author = {Anonymous Author(s)},
+  booktitle = {Proceedings of the ACM International Conference on Multimedia},
+  year = {2026}
+}</code></pre>
+      </section>
+
+      <footer>
+        <span>CDIM Research Project</span>
+        <a href="#overview">Back to top</a>
+      </footer>
+    </main>
+  </body>
+</html>
