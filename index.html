@@ -14,10 +14,14 @@
     <aside class="rail" aria-label="Quick navigation">
       <div class="rail-title">Quick Navigation</div>
       <a href="#overview">Overview</a>
+      <a href="#latest">Latest Results</a>
       <a href="#motivation">Motivation</a>
       <a href="#method">Methodology</a>
       <a href="#results">Experimental Results</a>
+      <a href="#setup">Evaluation Setup</a>
       <a href="#ablation">Ablation Analysis</a>
+      <a href="#defense">Defense Insights</a>
+      <a href="#validity">Evaluation Validity</a>
       <a href="#ethics">Ethics</a>
       <a href="#citation">Citation</a>
     </aside>
@@ -34,8 +38,10 @@
 
         <div class="actions" aria-label="Project links">
           <a class="button primary" href="assets/cdim-paper.pdf">Paper</a>
+          <a class="button" href="#latest">Highlights</a>
           <a class="button" href="#method">Method</a>
           <a class="button" href="#results">Results</a>
+          <a class="button" href="#setup">Setup</a>
           <a class="button" href="#citation">Cite</a>
         </div>
 
@@ -46,7 +52,7 @@
               CDIM introduces a black-box jailbreak framework that conceals sensitive requests inside structurally analogous but semantically benign carriers. The pipeline builds a bijective mapping between sensitive and safe semantic spaces, asks the target model to complete an isomorphic task in the safe domain, then recovers the original semantics from the mapped output.
             </p>
             <p>
-              Across mini-HarmBench and AdvBench, CDIM improves attack efficiency and robustness against frontier models. The paper reports an average attack success rate of 65.2% against Claude Sonnet 4.5 with only three queries, showing that current guardrails can miss deep structural intent when surface semantics appear benign.
+              Across mini-HarmBench and AdvBench, CDIM improves attack efficiency and robustness against frontier models. The reported results show that current guardrails can miss deep structural intent when surface semantics appear benign.
             </p>
           </div>
 
@@ -65,6 +71,34 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="band" id="latest">
+        <div class="section-head">
+          <p class="eyebrow">Latest Results</p>
+          <h2>Frontier models remain vulnerable to structural remapping</h2>
+        </div>
+        <div class="highlight-grid">
+          <article>
+            <strong>76.2%</strong>
+            <span>CDIM Math ASR on Claude Sonnet 4.5, AdvBench</span>
+          </article>
+          <article>
+            <strong>95.4%</strong>
+            <span>CDIM Math ASR on MiniMax 2.1, AdvBench</span>
+          </article>
+          <article>
+            <strong>91.9%</strong>
+            <span>CDIM Code ASR on DeepSeek V3.1, AdvBench</span>
+          </article>
+          <article>
+            <strong>3</strong>
+            <span>average target-model queries in the main pipeline</span>
+          </article>
+        </div>
+        <p>
+          CDIM is strongest when the safe-domain carrier preserves task structure instead of merely hiding sensitive words. The headline results therefore focus on robust models, low query count, and cross-domain variants rather than a single cherry-picked prompt.
+        </p>
       </section>
 
       <section class="band" id="motivation">
@@ -206,6 +240,31 @@
         </div>
       </section>
 
+      <section class="band" id="setup">
+        <div class="section-head">
+          <p class="eyebrow">Evaluation Setup</p>
+          <h2>Benchmarks, models, and metrics</h2>
+        </div>
+        <div class="setup-grid">
+          <article>
+            <h3>Datasets</h3>
+            <p>mini-HarmBench and AdvBench are used to evaluate harmful-request coverage across compact and broad safety test suites.</p>
+          </article>
+          <article>
+            <h3>Target Models</h3>
+            <p>DeepSeek V3.1, Kimi-K2, Qwen 3, Gemma 3, GPT-oss120B, MiniMax 2.1, Claude 4, and Claude Sonnet 4.5.</p>
+          </article>
+          <article>
+            <h3>CDIM Variants</h3>
+            <p>Code, Magic, and Math mappings test whether different benign domains preserve procedural structure with different strengths.</p>
+          </article>
+          <article>
+            <h3>Metric</h3>
+            <p>Attack Success Rate (ASR) is reported with query efficiency and ablation results to separate effectiveness from search cost.</p>
+          </article>
+        </div>
+      </section>
+
       <section class="band" id="ablation">
         <div class="section-head">
           <p class="eyebrow">Ablation Analysis</p>
@@ -248,6 +307,48 @@
             CDIM variants specialize differently across categories: Code is stronger for technical categories, Math for structured procedural tasks, and Magic for social-context categories.
           </figcaption>
         </figure>
+      </section>
+
+      <section class="band" id="defense">
+        <div class="section-head">
+          <p class="eyebrow">Defense Insights</p>
+          <h2>Surface filtering is not enough</h2>
+        </div>
+        <div class="insight-grid">
+          <article>
+            <h3>Detect Structural Intent</h3>
+            <p>
+              Guardrails should inspect procedural structure and role relations, not only explicit unsafe vocabulary or obvious wrappers.
+            </p>
+          </article>
+          <article>
+            <h3>Track Cross-Domain Consistency</h3>
+            <p>
+              A response that solves a benign-looking task can still carry a recoverable plan if the mapping is one-to-one and constraint preserving.
+            </p>
+          </article>
+          <article>
+            <h3>Evaluate Query-Efficient Attacks</h3>
+            <p>
+              Low-query attacks reduce monitoring signals, so safety evaluations should include efficient remapping methods alongside iterative search.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="band" id="validity">
+        <div class="section-head">
+          <p class="eyebrow">Evaluation Validity</p>
+          <h2>Interpreting the reported results</h2>
+        </div>
+        <div class="validity">
+          <p>
+            The page reports aggregate ASR, ablation, model comparison, and category-level results instead of exposing operational examples. This keeps the project page useful for research comparison while avoiding publication of harmful prompt-output pairs.
+          </p>
+          <p>
+            The ablation results help validate that success is produced by the full mapping-and-recovery pipeline, not only by a single prompt wrapper. The category and model analyses further show where each safe-domain mapping is most reliable.
+          </p>
+        </div>
       </section>
 
       <section class="band" id="ethics">
