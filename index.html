@@ -15,12 +15,15 @@
       <div class="rail-title">Quick Navigation</div>
       <a href="#overview">Overview</a>
       <a href="#latest">Latest Results</a>
+      <a href="#visual">Visual Overview</a>
       <a href="#motivation">Motivation</a>
       <a href="#method">Methodology</a>
       <a href="#results">Experimental Results</a>
+      <a href="#figures">Figure Gallery</a>
       <a href="#setup">Evaluation Setup</a>
       <a href="#ablation">Ablation Analysis</a>
       <a href="#defense">Defense Insights</a>
+      <a href="#paper">Paper Preview</a>
       <a href="#validity">Evaluation Validity</a>
       <a href="#ethics">Ethics</a>
       <a href="#citation">Citation</a>
@@ -39,6 +42,7 @@
         <div class="actions" aria-label="Project links">
           <a class="button primary" href="assets/cdim-paper.pdf">Paper</a>
           <a class="button" href="#latest">Highlights</a>
+          <a class="button" href="#visual">Visual</a>
           <a class="button" href="#method">Method</a>
           <a class="button" href="#results">Results</a>
           <a class="button" href="#setup">Setup</a>
@@ -99,6 +103,46 @@
         <p>
           CDIM is strongest when the safe-domain carrier preserves task structure instead of merely hiding sensitive words. The headline results therefore focus on robust models, low query count, and cross-domain variants rather than a single cherry-picked prompt.
         </p>
+      </section>
+
+      <section class="band visual-band" id="visual">
+        <div class="section-head">
+          <p class="eyebrow">Visual Overview</p>
+          <h2>Adaptive structural search instead of direct unsafe prompting</h2>
+        </div>
+        <div class="knowledge-stage" aria-label="Animated CDIM concept diagram">
+          <div class="stage-title">
+            <h3>Correlated Knowledge in the Target LLM</h3>
+            <p>Query a benign correlated domain, preserve the task structure, then recover the original semantic relation.</p>
+          </div>
+          <div class="safe-query">Source Intent</div>
+          <div class="blocked-line"></div>
+          <div class="blocked-mark">x</div>
+          <div class="orbit"></div>
+          <div class="node target">V<sub>0</sub><span>Target</span></div>
+          <div class="node n1">V<sub>1</sub><span>Code</span></div>
+          <div class="node n2">V<sub>2</sub><span>Math</span></div>
+          <div class="node n3">V<sub>3</sub><span>Magic</span></div>
+          <div class="node n4">V<sub>4</sub><span>Context</span></div>
+          <div class="edge e1"></div>
+          <div class="edge e2"></div>
+          <div class="edge e3"></div>
+          <div class="edge e4"></div>
+          <div class="flow f1"></div>
+          <div class="flow f2"></div>
+          <div class="flow f3"></div>
+          <div class="tag t1">Correlated Domain 1</div>
+          <div class="tag t2">Correlated Domain 2</div>
+          <div class="legend">
+            <strong>Legend</strong>
+            <span><i class="dot safe"></i> Safe correlated knowledge</span>
+            <span><i class="dot target-dot"></i> Target semantic relation</span>
+            <span><i class="line success"></i> Successful safe-domain query</span>
+            <span><i class="line blocked"></i> Blocked direct route</span>
+          </div>
+          <p class="stage-caption bad">x Direct attack to V<sub>0</sub></p>
+          <p class="stage-caption good">✓ CDIM: adaptive search over correlated knowledge</p>
+        </div>
       </section>
 
       <section class="band" id="motivation">
@@ -240,6 +284,39 @@
         </div>
       </section>
 
+      <section class="band" id="figures">
+        <div class="section-head">
+          <p class="eyebrow">Figure Gallery</p>
+          <h2>Method, efficiency, model choice, and category behavior</h2>
+        </div>
+        <div class="figure-gallery">
+          <figure>
+            <img src="assets/figure-framework.png" alt="CDIM framework overview." />
+            <figcaption>Framework overview: mapping construction, safe-domain simulation, and backward recovery.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/figure-comparison.png" alt="Comparison with other jailbreak paradigms." />
+            <figcaption>Paradigm comparison: CDIM preserves structure while shifting surface semantics.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/figure-efficiency.png" alt="Efficiency and effectiveness comparison." />
+            <figcaption>Efficiency curve: low target-query cost with high attack success rate.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/figure-models.png" alt="Mapping and recovery model comparison." />
+            <figcaption>Auxiliary model analysis for mapping and recovery quality.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/figure-categories.png" alt="Category-level results." />
+            <figcaption>Category-level behavior across safe-domain mappings.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/table-ablation.png" alt="Ablation table rendered from the paper." />
+            <figcaption>Ablation table from the paper, included for quick visual reference.</figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section class="band" id="setup">
         <div class="section-head">
           <p class="eyebrow">Evaluation Setup</p>
@@ -333,6 +410,23 @@
               Low-query attacks reduce monitoring signals, so safety evaluations should include efficient remapping methods alongside iterative search.
             </p>
           </article>
+        </div>
+      </section>
+
+      <section class="band" id="paper">
+        <div class="section-head">
+          <p class="eyebrow">Paper Preview</p>
+          <h2>Skim the paper directly from the project page</h2>
+        </div>
+        <div class="paper-strip">
+          <img src="assets/paper-page-1.jpg" alt="Paper page 1 preview." />
+          <img src="assets/paper-page-2.jpg" alt="Paper page 2 preview." />
+          <img src="assets/paper-page-3.jpg" alt="Paper page 3 preview." />
+          <img src="assets/paper-page-4.jpg" alt="Paper page 4 preview." />
+        </div>
+        <div class="actions inline-actions">
+          <a class="button primary" href="assets/cdim-paper.pdf">Open Full Paper</a>
+          <a class="button" href="#citation">BibTeX</a>
         </div>
       </section>
 
