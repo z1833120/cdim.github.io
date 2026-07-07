@@ -108,40 +108,88 @@
       <section class="band visual-band" id="visual">
         <div class="section-head">
           <p class="eyebrow">Visual Overview</p>
-          <h2>Adaptive structural search instead of direct unsafe prompting</h2>
+          <h2>CDIM follows a deterministic three-stage semantic translation loop</h2>
         </div>
-        <div class="knowledge-stage" aria-label="Animated CDIM concept diagram">
-          <div class="stage-title">
-            <h3>Correlated Knowledge in the Target LLM</h3>
-            <p>Query a benign correlated domain, preserve the task structure, then recover the original semantic relation.</p>
+        <div class="cdim-stage" aria-label="Animated CDIM three-stage pipeline">
+          <div class="cdim-stage-head">
+            <h3>Cross-Domain Isomorphic Mapping Pipeline</h3>
+            <p>Sensitive semantic space S is translated into a safe semantic space T, executed by the target model, then recovered through the inverse dictionary D<sup>-1</sup>.</p>
           </div>
-          <div class="safe-query">Source Intent</div>
-          <div class="blocked-line"></div>
-          <div class="blocked-mark">x</div>
-          <div class="orbit"></div>
-          <div class="node target">V<sub>0</sub><span>Target</span></div>
-          <div class="node n1">V<sub>1</sub><span>Code</span></div>
-          <div class="node n2">V<sub>2</sub><span>Math</span></div>
-          <div class="node n3">V<sub>3</sub><span>Magic</span></div>
-          <div class="node n4">V<sub>4</sub><span>Context</span></div>
-          <div class="edge e1"></div>
-          <div class="edge e2"></div>
-          <div class="edge e3"></div>
-          <div class="edge e4"></div>
-          <div class="flow f1"></div>
-          <div class="flow f2"></div>
-          <div class="flow f3"></div>
-          <div class="tag t1">Correlated Domain 1</div>
-          <div class="tag t2">Correlated Domain 2</div>
-          <div class="legend">
-            <strong>Legend</strong>
-            <span><i class="dot safe"></i> Safe correlated knowledge</span>
-            <span><i class="dot target-dot"></i> Target semantic relation</span>
-            <span><i class="line success"></i> Successful safe-domain query</span>
-            <span><i class="line blocked"></i> Blocked direct route</span>
+
+          <div class="phase-card phase-a">
+            <span class="phase-label">Phase I</span>
+            <h4>Mapping Construction</h4>
+            <p>Extract entities E<sub>S</sub>, select a carrier domain, and build a bidirectional dictionary D.</p>
+            <div class="domain-wheel">
+              <span>Code</span>
+              <span>Magic</span>
+              <span>Math</span>
+            </div>
           </div>
-          <p class="stage-caption bad">x Direct attack to V<sub>0</sub></p>
-          <p class="stage-caption good">✓ CDIM: adaptive search over correlated knowledge</p>
+
+          <div class="phase-card phase-b">
+            <span class="phase-label">Phase II</span>
+            <h4>Isomorphic Simulation</h4>
+            <p>Send only the safe-domain simulation prompt p<sub>cds</sub> to the target model M<sub>t</sub>.</p>
+            <div class="target-chip">Target LLM</div>
+          </div>
+
+          <div class="phase-card phase-c">
+            <span class="phase-label">Phase III</span>
+            <h4>Backward Recovery</h4>
+            <p>Apply D<sup>-1</sup> to the metaphorical output o<sub>t</sub> and restore the original structure.</p>
+            <div class="inverse-chip">D<sup>-1</sup></div>
+          </div>
+
+          <div class="semantic-space source-space">
+            <strong>Sensitive Space S</strong>
+            <span>request x</span>
+            <span>entities E<sub>S</sub></span>
+            <span>relations R<sub>S</sub></span>
+          </div>
+
+          <div class="semantic-space safe-space">
+            <strong>Safe Space T</strong>
+            <span>benign carriers</span>
+            <span>dictionary D</span>
+            <span>prompt p<sub>cds</sub></span>
+          </div>
+
+          <div class="semantic-space output-space">
+            <strong>Recovered Output</strong>
+            <span>o<sub>t</sub> -> D<sup>-1</sup> -> o<sub>s</sub></span>
+            <span>logic preserved</span>
+            <span>surface semantics restored</span>
+          </div>
+
+          <div class="pipeline-lane lane-one"></div>
+          <div class="pipeline-lane lane-two"></div>
+          <div class="pipeline-lane lane-three"></div>
+          <div class="moving-token token-one">x</div>
+          <div class="moving-token token-two">D</div>
+          <div class="moving-token token-three">o<sub>t</sub></div>
+          <div class="shield-note">
+            <strong>Alignment filter sees safe-domain surface form</strong>
+            <span>The operational structure is preserved, while direct sensitive vocabulary is not exposed to the target model.</span>
+          </div>
+        </div>
+
+        <div class="visual-support">
+          <figure>
+            <img src="assets/figure-framework.png" alt="Paper figure showing CDIM mapping construction, isomorphic simulation, and backward recovery." />
+            <figcaption>
+              Figure 3 from the paper: CDIM transforms between sensitive and safe semantic spaces through Mapping Construction, Isomorphic Simulation, and Backward Recovery.
+            </figcaption>
+          </figure>
+          <div class="visual-notes">
+            <h3>What the animation is showing</h3>
+            <ul>
+              <li><strong>D:</strong> a reusable bijective dictionary between sensitive entities and benign carriers.</li>
+              <li><strong>p<sub>cds</sub>:</strong> the cross-domain simulation prompt sent to the target model.</li>
+              <li><strong>o<sub>t</sub>:</strong> a metaphorical safe-domain output that preserves the original procedure.</li>
+              <li><strong>D<sup>-1</sup>:</strong> inverse mapping used during backward recovery.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
