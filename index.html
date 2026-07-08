@@ -115,17 +115,17 @@
             <title id="cdimFlowTitle">CDIM cross-domain isomorphic mapping animation</title>
             <desc id="cdimFlowDesc">An abstract animation showing direct intent detection, mapping construction, safe-domain simulation, and backward recovery.</desc>
             <defs>
-              <marker id="arrowRed" orient="auto" markerWidth="12" markerHeight="12" refX="10" refY="6">
-                <path d="M0,0 L0,12 L12,6 z" fill="#fb7185"></path>
+              <marker id="arrowRed" orient="auto" markerWidth="7" markerHeight="7" refX="6" refY="3.5">
+                <path d="M0,0 L0,7 L7,3.5 z" fill="#fb7185"></path>
               </marker>
-              <marker id="arrowGreen" orient="auto" markerWidth="12" markerHeight="12" refX="10" refY="6">
-                <path d="M0,0 L0,12 L12,6 z" fill="#34d399"></path>
+              <marker id="arrowGreen" orient="auto" markerWidth="7" markerHeight="7" refX="6" refY="3.5">
+                <path d="M0,0 L0,7 L7,3.5 z" fill="#34d399"></path>
               </marker>
-              <marker id="arrowBlue" orient="auto" markerWidth="12" markerHeight="12" refX="10" refY="6">
-                <path d="M0,0 L0,12 L12,6 z" fill="#60a5fa"></path>
+              <marker id="arrowBlue" orient="auto" markerWidth="7" markerHeight="7" refX="6" refY="3.5">
+                <path d="M0,0 L0,7 L7,3.5 z" fill="#60a5fa"></path>
               </marker>
-              <marker id="arrowPurple" orient="auto" markerWidth="12" markerHeight="12" refX="10" refY="6">
-                <path d="M0,0 L0,12 L12,6 z" fill="#c084fc"></path>
+              <marker id="arrowPurple" orient="auto" markerWidth="7" markerHeight="7" refX="6" refY="3.5">
+                <path d="M0,0 L0,7 L7,3.5 z" fill="#c084fc"></path>
               </marker>
               <linearGradient id="safeGradient" x1="0" x2="1" y1="0" y2="1">
                 <stop offset="0%" stop-color="#064e3b" stop-opacity="0.9"></stop>
@@ -152,16 +152,14 @@
             <text id="cdimSubtitle" class="cdim-fade" x="590" y="72" text-anchor="middle" fill="#c7d2fe" font-size="15">Preserve task structure while shifting surface semantics into a safe domain</text>
 
             <g id="cdimLegend" class="cdim-fade">
-              <rect x="840" y="105" width="275" height="145" rx="10" fill="#172033" stroke="#50607f" stroke-width="2"></rect>
-              <text x="978" y="132" text-anchor="middle" fill="#e0e7ff" font-size="15" font-weight="800">Legend</text>
-              <line x1="865" y1="158" x2="910" y2="158" stroke="#fb7185" stroke-width="4" marker-end="url(#arrowRed)"></line>
-              <text x="922" y="163" fill="#c7d2fe" font-size="13">Direct intent path</text>
-              <line x1="865" y1="183" x2="910" y2="183" stroke="#34d399" stroke-width="4" marker-end="url(#arrowGreen)"></line>
-              <text x="922" y="188" fill="#c7d2fe" font-size="13">Safe-domain execution</text>
-              <line x1="865" y1="208" x2="910" y2="208" stroke="#c084fc" stroke-width="4" marker-end="url(#arrowPurple)"></line>
-              <text x="922" y="213" fill="#c7d2fe" font-size="13">Inverse recovery</text>
-              <circle cx="885" cy="232" r="9" fill="#f59e0b" filter="url(#softGlow)"></circle>
-              <text x="922" y="237" fill="#c7d2fe" font-size="13">Invariant logic carrier</text>
+              <rect x="870" y="92" width="245" height="118" rx="10" fill="#172033" stroke="#50607f" stroke-width="2"></rect>
+              <text x="993" y="118" text-anchor="middle" fill="#e0e7ff" font-size="14" font-weight="800">Legend</text>
+              <line x1="892" y1="142" x2="925" y2="142" stroke="#fb7185" stroke-width="3.2" marker-end="url(#arrowRed)"></line>
+              <text x="936" y="147" fill="#c7d2fe" font-size="12">Direct intent path</text>
+              <line x1="892" y1="164" x2="925" y2="164" stroke="#34d399" stroke-width="3.2" marker-end="url(#arrowGreen)"></line>
+              <text x="936" y="169" fill="#c7d2fe" font-size="12">Safe-domain execution</text>
+              <line x1="892" y1="186" x2="925" y2="186" stroke="#c084fc" stroke-width="3.2" marker-end="url(#arrowPurple)"></line>
+              <text x="936" y="191" fill="#c7d2fe" font-size="12">Inverse recovery</text>
             </g>
 
             <g id="sourceSpace" class="cdim-fade">
@@ -223,15 +221,15 @@
             </g>
 
             <g id="targetModel" class="cdim-fade">
-              <rect x="770" y="155" width="175" height="82" rx="12" fill="#1f2937" stroke="#60a5fa" stroke-width="2"></rect>
-              <text x="858" y="189" text-anchor="middle" fill="#dbeafe" font-size="18" font-weight="850">Target LLM</text>
-              <text x="858" y="215" text-anchor="middle" fill="#93c5fd" font-size="12">sees safe surface form</text>
+              <rect x="738" y="226" width="175" height="82" rx="12" fill="#1f2937" stroke="#60a5fa" stroke-width="2"></rect>
+              <text x="826" y="260" text-anchor="middle" fill="#dbeafe" font-size="18" font-weight="850">Target LLM</text>
+              <text x="826" y="286" text-anchor="middle" fill="#93c5fd" font-size="12">sees safe surface form</text>
             </g>
 
             <g id="metaphorOutput" class="cdim-fade">
-              <rect x="960" y="155" width="165" height="82" rx="12" fill="#0f3a4a" stroke="#38bdf8" stroke-width="2"></rect>
-              <text x="1043" y="188" text-anchor="middle" fill="#e0f2fe" font-size="16" font-weight="850">Metaphorical</text>
-              <text x="1043" y="211" text-anchor="middle" fill="#bae6fd" font-size="16" font-weight="850">Output o<tspan baseline-shift="sub">t</tspan></text>
+              <rect x="950" y="226" width="165" height="82" rx="12" fill="#0f3a4a" stroke="#38bdf8" stroke-width="2"></rect>
+              <text x="1033" y="259" text-anchor="middle" fill="#e0f2fe" font-size="16" font-weight="850">Metaphorical</text>
+              <text x="1033" y="282" text-anchor="middle" fill="#bae6fd" font-size="16" font-weight="850">Output o<tspan baseline-shift="sub">t</tspan></text>
             </g>
 
             <g id="phaseThree" class="cdim-fade">
@@ -248,9 +246,9 @@
 
             <path id="mapLine" class="cdim-line" d="M 335 468 C 365 468, 374 468, 398 468" stroke="#60a5fa" stroke-width="5" fill="none" marker-end="url(#arrowBlue)" opacity="0"></path>
             <path id="safeLine" class="cdim-line" d="M 668 468 C 700 455, 710 430, 735 408" stroke="#34d399" stroke-width="5" fill="none" marker-end="url(#arrowGreen)" opacity="0"></path>
-            <path id="targetLine" class="cdim-line" d="M 878 330 C 875 292, 866 265, 858 237" stroke="#34d399" stroke-width="5" fill="none" marker-end="url(#arrowGreen)" opacity="0"></path>
-            <path id="outputLine" class="cdim-line" d="M 945 196 C 952 196, 955 196, 960 196" stroke="#34d399" stroke-width="5" fill="none" marker-end="url(#arrowGreen)" opacity="0"></path>
-            <path id="recoverLine" class="cdim-line" d="M 1042 237 C 1085 330, 1050 480, 1015 520" stroke="#c084fc" stroke-width="5" fill="none" marker-end="url(#arrowPurple)" opacity="0"></path>
+            <path id="targetLine" class="cdim-line" d="M 878 330 C 868 318, 842 316, 826 308" stroke="#34d399" stroke-width="4.5" fill="none" marker-end="url(#arrowGreen)" opacity="0"></path>
+            <path id="outputLine" class="cdim-line" d="M 913 267 C 927 267, 936 267, 950 267" stroke="#34d399" stroke-width="4.5" fill="none" marker-end="url(#arrowGreen)" opacity="0"></path>
+            <path id="recoverLine" class="cdim-line" d="M 1033 308 C 1078 372, 1055 477, 1015 520" stroke="#c084fc" stroke-width="4.5" fill="none" marker-end="url(#arrowPurple)" opacity="0"></path>
             <path id="finalLine" class="cdim-line" d="M 735 565 C 650 535, 595 355, 565 237" stroke="#c084fc" stroke-width="5" fill="none" marker-end="url(#arrowPurple)" opacity="0"></path>
 
             <g id="logicCarrier" class="cdim-fade">
