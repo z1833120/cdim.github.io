@@ -568,31 +568,11 @@ figcaption {
   border-top-color: var(--green);
 }
 
-.figure-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.figure-gallery figure,
 .paper-strip img {
   border: 1px solid #ead9bf;
   border-radius: 8px;
   background: linear-gradient(180deg, #ffffff, #fffaf0);
   box-shadow: var(--shadow);
-}
-
-.figure-gallery figure {
-  margin: 0;
-  padding: 12px;
-}
-
-.figure-gallery img {
-  display: block;
-  width: 100%;
-  height: 260px;
-  object-fit: contain;
-  border-radius: 4px;
 }
 
 .paper-strip {
@@ -666,7 +646,7 @@ figcaption {
 }
 
 .table-wrap.compact {
-  max-width: 620px;
+  max-width: none;
   margin-top: 0;
 }
 
@@ -678,7 +658,7 @@ table {
 }
 
 .compact table {
-  min-width: 520px;
+  min-width: 0;
 }
 
 caption {
@@ -734,9 +714,19 @@ tbody tr.highlight td {
 
 .ablation {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+  grid-template-columns: minmax(620px, 1.45fr) minmax(280px, 0.75fr);
   gap: 28px;
   align-items: start;
+}
+
+.ablation .table-wrap {
+  width: 100%;
+}
+
+.ablation p {
+  max-width: 46ch;
+  font-size: 1.03rem;
+  line-height: 1.75;
 }
 
 .citation pre {
@@ -797,7 +787,6 @@ footer a {
   .highlight-grid,
   .setup-grid,
   .insight-grid,
-  .figure-gallery,
   .paper-strip,
   .visual-support,
   .validity,

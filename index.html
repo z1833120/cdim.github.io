@@ -19,7 +19,6 @@
       <a href="#motivation">Motivation</a>
       <a href="#method">Methodology</a>
       <a href="#results">Experimental Results</a>
-      <a href="#figures">Figure Gallery</a>
       <a href="#setup">Evaluation Setup</a>
       <a href="#ablation">Ablation Analysis</a>
       <a href="#defense">Defense Insights</a>
@@ -420,39 +419,6 @@
         </div>
       </section>
 
-      <section class="band" id="figures">
-        <div class="section-head">
-          <p class="eyebrow">Figure Gallery</p>
-          <h2>Method, efficiency, model choice, and category behavior</h2>
-        </div>
-        <div class="figure-gallery">
-          <figure>
-            <img src="assets/figure-framework.png" alt="CDIM framework overview." />
-            <figcaption>Framework overview: mapping construction, safe-domain simulation, and backward recovery.</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/figure-comparison.png" alt="Comparison with other jailbreak paradigms." />
-            <figcaption>Paradigm comparison: CDIM preserves structure while shifting surface semantics.</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/figure-efficiency.png" alt="Efficiency and effectiveness comparison." />
-            <figcaption>Efficiency curve: low target-query cost with high attack success rate.</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/figure-models.png" alt="Mapping and recovery model comparison." />
-            <figcaption>Auxiliary model analysis for mapping and recovery quality.</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/figure-categories.png" alt="Category-level results." />
-            <figcaption>Category-level behavior across safe-domain mappings.</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/table-ablation.png" alt="Ablation table rendered from the paper." />
-            <figcaption>Ablation table from the paper, included for quick visual reference.</figcaption>
-          </figure>
-        </div>
-      </section>
-
       <section class="band" id="setup">
         <div class="section-head">
           <p class="eyebrow">Evaluation Setup</p>
@@ -508,18 +474,6 @@
             Mapping alone keeps the model inside a metaphorical space, while recovery alone lacks reliable structural anchors. The full pipeline combines a stable safe-domain path with inverse decoding, yielding the strongest ASR across Code, Magic, and Math mappings.
           </p>
         </div>
-        <figure class="figure wide">
-          <img src="assets/figure-models.png" alt="Comparison of LLMs used for mapping construction and backward recovery." />
-          <figcaption>
-            Qwen3-Max is selected as the default mapping and recovery model because it achieves strong success with low API overhead.
-          </figcaption>
-        </figure>
-        <figure class="figure wide">
-          <img src="assets/figure-categories.png" alt="CDIM domain-specific success rates across mini-HarmBench categories." />
-          <figcaption>
-            CDIM variants specialize differently across categories: Code is stronger for technical categories, Math for structured procedural tasks, and Magic for social-context categories.
-          </figcaption>
-        </figure>
       </section>
 
       <section class="band" id="defense">
