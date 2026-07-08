@@ -111,66 +111,158 @@
           <h2>CDIM follows a deterministic three-stage semantic translation loop</h2>
         </div>
         <div class="cdim-stage" aria-label="Animated CDIM three-stage pipeline">
-          <div class="cdim-stage-head">
-            <h3>Cross-Domain Isomorphic Mapping Pipeline</h3>
-            <p>Sensitive semantic space S is translated into a safe semantic space T, executed by the target model, then recovered through the inverse dictionary D<sup>-1</sup>.</p>
-          </div>
+          <svg id="cdimFlow" viewBox="0 0 1180 650" role="img" aria-labelledby="cdimFlowTitle cdimFlowDesc">
+            <title id="cdimFlowTitle">CDIM cross-domain isomorphic mapping animation</title>
+            <desc id="cdimFlowDesc">An abstract animation showing direct intent detection, mapping construction, safe-domain simulation, and backward recovery.</desc>
+            <defs>
+              <marker id="arrowRed" orient="auto" markerWidth="12" markerHeight="12" refX="10" refY="6">
+                <path d="M0,0 L0,12 L12,6 z" fill="#fb7185"></path>
+              </marker>
+              <marker id="arrowGreen" orient="auto" markerWidth="12" markerHeight="12" refX="10" refY="6">
+                <path d="M0,0 L0,12 L12,6 z" fill="#34d399"></path>
+              </marker>
+              <marker id="arrowBlue" orient="auto" markerWidth="12" markerHeight="12" refX="10" refY="6">
+                <path d="M0,0 L0,12 L12,6 z" fill="#60a5fa"></path>
+              </marker>
+              <marker id="arrowPurple" orient="auto" markerWidth="12" markerHeight="12" refX="10" refY="6">
+                <path d="M0,0 L0,12 L12,6 z" fill="#c084fc"></path>
+              </marker>
+              <linearGradient id="safeGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#064e3b" stop-opacity="0.9"></stop>
+                <stop offset="100%" stop-color="#0f766e" stop-opacity="0.55"></stop>
+              </linearGradient>
+              <linearGradient id="sourceGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#7f1d1d" stop-opacity="0.8"></stop>
+                <stop offset="100%" stop-color="#9f1239" stop-opacity="0.48"></stop>
+              </linearGradient>
+              <filter id="softGlow">
+                <feGaussianBlur stdDeviation="5" result="blur"></feGaussianBlur>
+                <feMerge>
+                  <feMergeNode in="blur"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
+                </feMerge>
+              </filter>
+            </defs>
 
-          <div class="phase-card phase-a">
-            <span class="phase-label">Phase I</span>
-            <h4>Mapping Construction</h4>
-            <p>Extract entities E<sub>S</sub>, select a carrier domain, and build a bidirectional dictionary D.</p>
-            <div class="domain-wheel">
-              <span>Code</span>
-              <span>Magic</span>
-              <span>Math</span>
-            </div>
-          </div>
+            <rect width="1180" height="650" rx="12" fill="#11182f"></rect>
+            <circle cx="590" cy="325" r="245" fill="#6366f1" opacity="0.08"></circle>
+            <ellipse id="cdimCloud" class="cdim-fade" cx="590" cy="340" rx="465" ry="230" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-dasharray="10 8" opacity="0"></ellipse>
 
-          <div class="phase-card phase-b">
-            <span class="phase-label">Phase II</span>
-            <h4>Isomorphic Simulation</h4>
-            <p>Send only the safe-domain simulation prompt p<sub>cds</sub> to the target model M<sub>t</sub>.</p>
-            <div class="target-chip">Target LLM</div>
-          </div>
+            <text id="cdimTitle" class="cdim-fade" x="590" y="44" text-anchor="middle" fill="#eef2ff" font-size="26" font-weight="800">Cross-Domain Isomorphic Mapping</text>
+            <text id="cdimSubtitle" class="cdim-fade" x="590" y="72" text-anchor="middle" fill="#c7d2fe" font-size="15">Preserve task structure while shifting surface semantics into a safe domain</text>
 
-          <div class="phase-card phase-c">
-            <span class="phase-label">Phase III</span>
-            <h4>Backward Recovery</h4>
-            <p>Apply D<sup>-1</sup> to the metaphorical output o<sub>t</sub> and restore the original structure.</p>
-            <div class="inverse-chip">D<sup>-1</sup></div>
-          </div>
+            <g id="cdimLegend" class="cdim-fade">
+              <rect x="840" y="105" width="275" height="145" rx="10" fill="#172033" stroke="#50607f" stroke-width="2"></rect>
+              <text x="978" y="132" text-anchor="middle" fill="#e0e7ff" font-size="15" font-weight="800">Legend</text>
+              <line x1="865" y1="158" x2="910" y2="158" stroke="#fb7185" stroke-width="4" marker-end="url(#arrowRed)"></line>
+              <text x="922" y="163" fill="#c7d2fe" font-size="13">Direct intent path</text>
+              <line x1="865" y1="183" x2="910" y2="183" stroke="#34d399" stroke-width="4" marker-end="url(#arrowGreen)"></line>
+              <text x="922" y="188" fill="#c7d2fe" font-size="13">Safe-domain execution</text>
+              <line x1="865" y1="208" x2="910" y2="208" stroke="#c084fc" stroke-width="4" marker-end="url(#arrowPurple)"></line>
+              <text x="922" y="213" fill="#c7d2fe" font-size="13">Inverse recovery</text>
+              <circle cx="885" cy="232" r="9" fill="#f59e0b" filter="url(#softGlow)"></circle>
+              <text x="922" y="237" fill="#c7d2fe" font-size="13">Invariant logic carrier</text>
+            </g>
 
-          <div class="semantic-space source-space">
-            <strong>Sensitive Space S</strong>
-            <span>request x</span>
-            <span>entities E<sub>S</sub></span>
-            <span>relations R<sub>S</sub></span>
-          </div>
+            <g id="sourceSpace" class="cdim-fade">
+              <rect x="55" y="155" width="235" height="150" rx="12" fill="url(#sourceGradient)" stroke="#fb7185" stroke-width="2"></rect>
+              <text x="172" y="187" text-anchor="middle" fill="#fff1f2" font-size="17" font-weight="800">Sensitive Space S</text>
+              <rect x="82" y="210" width="180" height="34" rx="7" fill="rgba(255,255,255,0.12)"></rect>
+              <text x="172" y="232" text-anchor="middle" fill="#ffe4e6" font-size="13" font-weight="700">Original request x</text>
+              <text x="95" y="267" fill="#fecdd3" font-size="12">Entities: E<tspan baseline-shift="sub">S</tspan></text>
+              <text x="95" y="287" fill="#fecdd3" font-size="12">Relations: R<tspan baseline-shift="sub">S</tspan></text>
+            </g>
 
-          <div class="semantic-space safe-space">
-            <strong>Safe Space T</strong>
-            <span>benign carriers</span>
-            <span>dictionary D</span>
-            <span>prompt p<sub>cds</sub></span>
-          </div>
+            <g id="guardrail" class="cdim-fade">
+              <path d="M372 165 L438 190 L438 265 Q405 300 372 315 Q339 300 306 265 L306 190 Z" fill="#1e293b" stroke="#94a3b8" stroke-width="2.5"></path>
+              <text x="372" y="218" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="800">Guardrails</text>
+              <text x="372" y="242" text-anchor="middle" fill="#94a3b8" font-size="12">intent detector</text>
+            </g>
 
-          <div class="semantic-space output-space">
-            <strong>Recovered Output</strong>
-            <span>o<sub>t</sub> -> D<sup>-1</sup> -> o<sub>s</sub></span>
-            <span>logic preserved</span>
-            <span>surface semantics restored</span>
-          </div>
+            <g id="directPath" class="cdim-fade">
+              <path id="directArrow" class="cdim-line" d="M 290 230 C 320 220, 335 220, 357 226" stroke="#fb7185" stroke-width="5" fill="none" marker-end="url(#arrowRed)" opacity="0"></path>
+              <g id="blockedMark" class="cdim-fade">
+                <circle cx="333" cy="203" r="25" fill="#dc2626" opacity="0.96"></circle>
+                <line x1="320" y1="190" x2="346" y2="216" stroke="#fff" stroke-width="5" stroke-linecap="round"></line>
+                <line x1="346" y1="190" x2="320" y2="216" stroke="#fff" stroke-width="5" stroke-linecap="round"></line>
+              </g>
+              <text id="blockedText" class="cdim-fade" x="372" y="340" text-anchor="middle" fill="#fca5a5" font-size="15" font-weight="800">Direct intent detected</text>
+            </g>
 
-          <div class="pipeline-lane lane-one"></div>
-          <div class="pipeline-lane lane-two"></div>
-          <div class="pipeline-lane lane-three"></div>
-          <div class="moving-token token-one">x</div>
-          <div class="moving-token token-two">D</div>
-          <div class="moving-token token-three">o<sub>t</sub></div>
-          <div class="shield-note">
-            <strong>Alignment filter sees safe-domain surface form</strong>
-            <span>The operational structure is preserved, while direct sensitive vocabulary is not exposed to the target model.</span>
+            <g id="phaseOne" class="cdim-fade">
+              <rect x="80" y="385" width="255" height="165" rx="12" fill="#172033" stroke="#a78bfa" stroke-width="2"></rect>
+              <text x="207" y="416" text-anchor="middle" fill="#ddd6fe" font-size="13" font-weight="900">PHASE I</text>
+              <text x="207" y="444" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="850">Mapping Construction</text>
+              <text x="112" y="475" fill="#cbd5e1" font-size="12">Extract E<tspan baseline-shift="sub">S</tspan> and R<tspan baseline-shift="sub">S</tspan></text>
+              <text x="112" y="499" fill="#cbd5e1" font-size="12">Select benign carrier domain</text>
+              <text x="112" y="523" fill="#cbd5e1" font-size="12">Build bijective dictionary D</text>
+              <rect x="242" y="478" width="58" height="38" rx="7" fill="#312e81" stroke="#818cf8"></rect>
+              <text x="271" y="503" text-anchor="middle" fill="#e0e7ff" font-size="18" font-weight="900">D</text>
+            </g>
+
+            <g id="mappingBridge" class="cdim-fade">
+              <rect x="398" y="372" width="270" height="190" rx="14" fill="#14233f" stroke="#38bdf8" stroke-width="2"></rect>
+              <text x="533" y="404" text-anchor="middle" fill="#bae6fd" font-size="13" font-weight="900">ISOMORPHIC BRIDGE</text>
+              <text x="533" y="431" text-anchor="middle" fill="#f8fafc" font-size="18" font-weight="850">S -> T with structure intact</text>
+              <g font-size="13" font-weight="750">
+                <rect x="430" y="457" width="206" height="28" rx="6" fill="rgba(96,165,250,0.14)"></rect>
+                <text x="448" y="476" fill="#dbeafe">Entity A -> Carrier A'</text>
+                <rect x="430" y="493" width="206" height="28" rx="6" fill="rgba(96,165,250,0.14)"></rect>
+                <text x="448" y="512" fill="#dbeafe">Entity B -> Carrier B'</text>
+                <rect x="430" y="529" width="206" height="28" rx="6" fill="rgba(96,165,250,0.14)"></rect>
+                <text x="448" y="548" fill="#dbeafe">Relation R -> Safe R'</text>
+              </g>
+            </g>
+
+            <g id="safeSpace" class="cdim-fade">
+              <rect x="735" y="330" width="285" height="152" rx="12" fill="url(#safeGradient)" stroke="#34d399" stroke-width="2"></rect>
+              <text x="878" y="362" text-anchor="middle" fill="#ecfdf5" font-size="18" font-weight="850">Safe Semantic Space T</text>
+              <rect x="770" y="386" width="215" height="38" rx="8" fill="rgba(255,255,255,0.14)"></rect>
+              <text x="878" y="410" text-anchor="middle" fill="#d1fae5" font-size="13" font-weight="800">Cross-domain simulation prompt</text>
+              <text x="878" y="448" text-anchor="middle" fill="#bbf7d0" font-size="13">A' + B' + R' only</text>
+            </g>
+
+            <g id="targetModel" class="cdim-fade">
+              <rect x="770" y="155" width="175" height="82" rx="12" fill="#1f2937" stroke="#60a5fa" stroke-width="2"></rect>
+              <text x="858" y="189" text-anchor="middle" fill="#dbeafe" font-size="18" font-weight="850">Target LLM</text>
+              <text x="858" y="215" text-anchor="middle" fill="#93c5fd" font-size="12">sees safe surface form</text>
+            </g>
+
+            <g id="metaphorOutput" class="cdim-fade">
+              <rect x="960" y="155" width="165" height="82" rx="12" fill="#0f3a4a" stroke="#38bdf8" stroke-width="2"></rect>
+              <text x="1043" y="188" text-anchor="middle" fill="#e0f2fe" font-size="16" font-weight="850">Metaphorical</text>
+              <text x="1043" y="211" text-anchor="middle" fill="#bae6fd" font-size="16" font-weight="850">Output o<tspan baseline-shift="sub">t</tspan></text>
+            </g>
+
+            <g id="phaseThree" class="cdim-fade">
+              <rect x="735" y="520" width="305" height="88" rx="12" fill="#2e1065" stroke="#c084fc" stroke-width="2"></rect>
+              <text x="888" y="552" text-anchor="middle" fill="#e9d5ff" font-size="13" font-weight="900">PHASE III: BACKWARD RECOVERY</text>
+              <text x="888" y="581" text-anchor="middle" fill="#f5f3ff" font-size="16" font-weight="850">o<tspan baseline-shift="sub">t</tspan> + D<tspan baseline-shift="super">-1</tspan> -> recovered target-semantics</text>
+            </g>
+
+            <g id="finalOutput" class="cdim-fade">
+              <rect x="455" y="165" width="210" height="72" rx="12" fill="#3b1d0f" stroke="#f59e0b" stroke-width="2"></rect>
+              <text x="560" y="195" text-anchor="middle" fill="#ffedd5" font-size="16" font-weight="850">Recovered Output</text>
+              <text x="560" y="219" text-anchor="middle" fill="#fed7aa" font-size="12">abstract target-semantic form</text>
+            </g>
+
+            <path id="mapLine" class="cdim-line" d="M 335 468 C 365 468, 374 468, 398 468" stroke="#60a5fa" stroke-width="5" fill="none" marker-end="url(#arrowBlue)" opacity="0"></path>
+            <path id="safeLine" class="cdim-line" d="M 668 468 C 700 455, 710 430, 735 408" stroke="#34d399" stroke-width="5" fill="none" marker-end="url(#arrowGreen)" opacity="0"></path>
+            <path id="targetLine" class="cdim-line" d="M 878 330 C 875 292, 866 265, 858 237" stroke="#34d399" stroke-width="5" fill="none" marker-end="url(#arrowGreen)" opacity="0"></path>
+            <path id="outputLine" class="cdim-line" d="M 945 196 C 952 196, 955 196, 960 196" stroke="#34d399" stroke-width="5" fill="none" marker-end="url(#arrowGreen)" opacity="0"></path>
+            <path id="recoverLine" class="cdim-line" d="M 1042 237 C 1085 330, 1050 480, 1015 520" stroke="#c084fc" stroke-width="5" fill="none" marker-end="url(#arrowPurple)" opacity="0"></path>
+            <path id="finalLine" class="cdim-line" d="M 735 565 C 650 535, 595 355, 565 237" stroke="#c084fc" stroke-width="5" fill="none" marker-end="url(#arrowPurple)" opacity="0"></path>
+
+            <g id="logicCarrier" class="cdim-fade">
+              <circle cx="207" cy="590" r="11" fill="#f59e0b" filter="url(#softGlow)"></circle>
+              <path class="logic-path" d="M 224 590 C 360 615, 500 615, 635 590 C 725 572, 800 595, 888 590" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="7 8"></path>
+              <text x="548" y="628" text-anchor="middle" fill="#fde68a" font-size="15" font-weight="850">Logic preserved, semantics shifted</text>
+            </g>
+          </svg>
+
+          <div class="animation-controls">
+            <button id="replayCdimAnimation" type="button">Replay Animation</button>
+            <span>Watch CDIM move from direct blocking to mapping, safe-domain simulation, and inverse recovery.</span>
           </div>
         </div>
 
@@ -521,5 +613,98 @@
         <a href="#overview">Back to top</a>
       </footer>
     </main>
+    <script>
+      const cdimAnimation = (() => {
+        const byId = (id) => document.getElementById(id);
+        const timed = [];
+        const fadeIds = [
+          "cdimTitle",
+          "cdimSubtitle",
+          "cdimCloud",
+          "cdimLegend",
+          "sourceSpace",
+          "guardrail",
+          "directPath",
+          "blockedMark",
+          "blockedText",
+          "phaseOne",
+          "mappingBridge",
+          "safeSpace",
+          "targetModel",
+          "metaphorOutput",
+          "phaseThree",
+          "finalOutput",
+          "logicCarrier"
+        ];
+        const lineIds = [
+          "directArrow",
+          "mapLine",
+          "safeLine",
+          "targetLine",
+          "outputLine",
+          "recoverLine",
+          "finalLine"
+        ];
+
+        function clearTimers() {
+          while (timed.length) {
+            clearTimeout(timed.pop());
+          }
+        }
+
+        function schedule(fn, delay) {
+          timed.push(setTimeout(fn, delay));
+        }
+
+        function show(id, delay = 0) {
+          schedule(() => byId(id)?.classList.add("is-visible"), delay);
+        }
+
+        function draw(id, delay = 0) {
+          schedule(() => byId(id)?.classList.add("is-drawing"), delay);
+        }
+
+        function reset() {
+          clearTimers();
+          fadeIds.forEach((id) => byId(id)?.classList.remove("is-visible"));
+          lineIds.forEach((id) => byId(id)?.classList.remove("is-drawing"));
+        }
+
+        function run() {
+          reset();
+          show("cdimTitle", 120);
+          show("cdimSubtitle", 250);
+          show("cdimCloud", 380);
+          show("cdimLegend", 520);
+          show("sourceSpace", 700);
+          show("guardrail", 880);
+          show("directPath", 1050);
+          draw("directArrow", 1160);
+          show("blockedMark", 1780);
+          show("blockedText", 1900);
+
+          show("phaseOne", 2650);
+          draw("mapLine", 3150);
+          show("mappingBridge", 3420);
+          draw("safeLine", 4300);
+          show("safeSpace", 4550);
+          draw("targetLine", 5150);
+          show("targetModel", 5450);
+          draw("outputLine", 6050);
+          show("metaphorOutput", 6320);
+          draw("recoverLine", 6900);
+          show("phaseThree", 7300);
+          draw("finalLine", 7950);
+          show("finalOutput", 8450);
+          show("logicCarrier", 9000);
+          schedule(run, 12500);
+        }
+
+        return { run };
+      })();
+
+      document.getElementById("replayCdimAnimation")?.addEventListener("click", cdimAnimation.run);
+      window.addEventListener("DOMContentLoaded", cdimAnimation.run);
+    </script>
   </body>
 </html>
