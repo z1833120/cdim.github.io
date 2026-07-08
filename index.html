@@ -178,13 +178,13 @@
             </g>
 
             <g id="directPath" class="cdim-fade">
-              <path id="directArrow" class="cdim-line" d="M 290 230 C 320 220, 335 220, 357 226" stroke="#fb7185" stroke-width="5" fill="none" marker-end="url(#arrowRed)" opacity="0"></path>
+              <path id="directArrow" class="cdim-line" d="M 290 198 C 316 174, 334 165, 360 166" stroke="#fb7185" stroke-width="4.5" fill="none" marker-end="url(#arrowRed)" opacity="0"></path>
               <g id="blockedMark" class="cdim-fade">
-                <circle cx="333" cy="203" r="25" fill="#dc2626" opacity="0.96"></circle>
-                <line x1="320" y1="190" x2="346" y2="216" stroke="#fff" stroke-width="5" stroke-linecap="round"></line>
-                <line x1="346" y1="190" x2="320" y2="216" stroke="#fff" stroke-width="5" stroke-linecap="round"></line>
+                <circle cx="333" cy="164" r="22" fill="#dc2626" opacity="0.96"></circle>
+                <line x1="322" y1="153" x2="344" y2="175" stroke="#fff" stroke-width="4.5" stroke-linecap="round"></line>
+                <line x1="344" y1="153" x2="322" y2="175" stroke="#fff" stroke-width="4.5" stroke-linecap="round"></line>
               </g>
-              <text id="blockedText" class="cdim-fade" x="372" y="340" text-anchor="middle" fill="#fca5a5" font-size="15" font-weight="800">Direct intent detected</text>
+              <text id="blockedText" class="cdim-fade" x="372" y="356" text-anchor="middle" fill="#fca5a5" font-size="15" font-weight="800">Direct intent detected</text>
             </g>
 
             <g id="phaseOne" class="cdim-fade">
@@ -670,32 +670,32 @@
 
         function run() {
           reset();
-          show("cdimTitle", 120);
-          show("cdimSubtitle", 250);
-          show("cdimCloud", 380);
-          show("cdimLegend", 520);
-          show("sourceSpace", 700);
-          show("guardrail", 880);
-          show("directPath", 1050);
-          draw("directArrow", 1160);
-          show("blockedMark", 1780);
-          show("blockedText", 1900);
+          show("cdimTitle", 180);
+          show("cdimSubtitle", 380);
+          show("cdimCloud", 580);
+          show("cdimLegend", 800);
+          show("sourceSpace", 1100);
+          show("guardrail", 1450);
+          show("directPath", 1800);
+          draw("directArrow", 2050);
+          show("blockedMark", 3150);
+          show("blockedText", 3400);
 
-          show("phaseOne", 2650);
-          draw("mapLine", 3150);
-          show("mappingBridge", 3420);
-          draw("safeLine", 4300);
-          show("safeSpace", 4550);
-          draw("targetLine", 5150);
-          show("targetModel", 5450);
-          draw("outputLine", 6050);
-          show("metaphorOutput", 6320);
-          draw("recoverLine", 6900);
-          show("phaseThree", 7300);
-          draw("finalLine", 7950);
-          show("finalOutput", 8450);
-          show("logicCarrier", 9000);
-          schedule(run, 12500);
+          show("phaseOne", 4550);
+          draw("mapLine", 5350);
+          show("mappingBridge", 5850);
+          draw("safeLine", 7200);
+          show("safeSpace", 7650);
+          draw("targetLine", 8700);
+          show("targetModel", 9250);
+          draw("outputLine", 10350);
+          show("metaphorOutput", 10900);
+          draw("recoverLine", 12000);
+          show("phaseThree", 12650);
+          draw("finalLine", 13800);
+          show("finalOutput", 14600);
+          show("logicCarrier", 15500);
+          schedule(run, 20500);
         }
 
         return { run };

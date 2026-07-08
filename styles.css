@@ -316,7 +316,7 @@ h3 {
 
 .cdim-line.is-drawing {
   opacity: 1;
-  animation: drawCdimLine 1.25s ease forwards;
+  animation: drawCdimLine 1.9s ease forwards;
 }
 
 .logic-path {
